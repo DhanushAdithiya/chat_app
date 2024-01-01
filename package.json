@@ -2,10 +2,12 @@
   "name": "chat_app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+	"type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon  server.ts"
+    "start": "node server.js",
+    "dev": "tsc -w -p . & nodemon dist/server.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

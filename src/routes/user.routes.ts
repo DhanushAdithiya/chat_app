@@ -1,9 +1,14 @@
-import { Router }  from "express";
+import {Router} from "express";
 import JWT from "jsonwebtoken";
-const Users = require("../models/user.models.ts");
+import dotenv from "dotenv";
+
+
+import Users from "../models/user.models.js";
+import { warn } from "console";
 
 
 const router = Router();
+dotenv.config();
 const JSON_KEY:string | undefined = process.env.JSON_KEY;
 if (!JSON_KEY) {
 	throw new Error("Secret key is not provied please add it to the env variables");
@@ -11,7 +16,7 @@ if (!JSON_KEY) {
 
 
 
-router.route("/add").post(async (req, res) => {
+router.route("/add").post(async (req: any, res:any) => {
   try {
     const { username, password, email } = req.body;
     const newUser = new Users({ username, email, password });
@@ -24,7 +29,7 @@ router.route("/add").post(async (req, res) => {
   }
 });
 
-router.route("/").post(async (req, res) => {
+router.route("/").post(async (req: any, res:any) => {
   const { username, password } = req.body;
   const user = await Users.findOne({ username, password });
 
@@ -43,4 +48,5 @@ router.route("/").post(async (req, res) => {
   }
 });
 
-module.exports = router;
+
+export default router
