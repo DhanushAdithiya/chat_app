@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "win_dev": "tsc && concurrently \"tsc -w\" \"nodemon dist/server.js\"",
-    "dev": "tsc -w -p . & nodemon scr/server.ts",
+    "win": "tsc && concurrently \"tsc -w\" \"nodemon dist/server.js\"",
+    "dev": "tsc -w -p . & nodemon dist/server.js",
     "build": "tsc"
   },
   "keywords": [],

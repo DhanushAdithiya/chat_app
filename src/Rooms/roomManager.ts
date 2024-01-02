@@ -1,4 +1,3 @@
+const title = document.querySelector("h1")
 
-class RoomManager {}
-
-module.exports = RoomManager;
+console.log(title.textContent);

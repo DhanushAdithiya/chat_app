@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Rooms from "../models/rooms.models.js";
+import path from "path";
 
 const router = Router();
 
@@ -17,12 +18,6 @@ router.post("/create-room", async (req, res) => {
       owner: roomDetails.owner,
       id: roomDetails.id,
     });
-
-    if (Rooms.findOne({ id: roomDetails.id })) {
-      res
-        .status(400)
-        .json("There exists a room with this ID. (This is a server bug.)");
-    }
 
     if (await room.save()) {
       res.status(200).json("Created a new room!");
@@ -42,10 +37,7 @@ router.get("/room/:id", async (req, res) => {
       );
     } else {
       res
-        .status(404)
-        .json(
-          "Could not find the room you are looking for please double check the id"
-        );
+        .status(404).json("Could not find the room you were looking for");
     }
   } catch (err) {
     res.status(400).json("Error occured:" + err);
