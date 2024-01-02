@@ -61,24 +61,24 @@ import roomRouter from "./routes/rooms.routes.js";
 app.use("/user", loginRouter);
 app.use("/", roomRouter);
 
-
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-  console.log("user entered");
+  console.log('A user connected');
 
+  socket.on('join', (room) => {
+    socket.join(room);
+    console.log(`User joined room: ${room}`);
+  });
+
+  socket.on('chatMessage', (data) => {
+    io.to(data.room).emit('message', data.message);
+  });
 
   socket.on('disconnect', () => {
-    console.log("user disconnected");
+    console.log('A user disconnected');
   });
-
-  socket.on('message', (message) => {
-    io.emit('message', message);
-  });
-
 });
-
-
 
 server.listen(PORT, () => {
   console.log(`Server started on Port: ${PORT}`);
