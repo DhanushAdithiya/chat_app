@@ -4,9 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ROOM TITLE</title>
-		<script src="manager/roomManager.js" type="module" > </script>
+	<script src="/js/Rooms/roomManager.js" type="module">
+	</script>
   </head>
   <body>
-		<h1>WELCOME TO {%TITLE%}</h1>
+		<h1>WELCOME TO :{%TITLE%}</h1>
+		<input class="message" type="text" name="messages" >
+		<button class="send-message" type="submit">send message</button>
+		<div class="message-area"> </div>
   </body>
 </html>
